@@ -11,8 +11,7 @@ const INITIAL_STATE = {
   image: '',
   rare: 'normal',
   trunfo: false,
-  save: false,
-  isSave: true,
+  save: true,
 };
 
 class App extends React.Component {
@@ -20,8 +19,6 @@ class App extends React.Component {
     super();
 
     this.state = INITIAL_STATE;
-
-    this.validateBtn = this.validateBtn.bind(this);
   }
 
   handleChange = (event) => {
@@ -29,10 +26,10 @@ class App extends React.Component {
 
     this.setState({
       [name]: type === 'checkbox' ? checked : value,
-    }, () => this.validateBtn());
+    }, this.validateBtn);
   }
 
-  validateBtn() {
+  validateBtn = () => {
     const {
       name,
       description,
@@ -58,9 +55,9 @@ class App extends React.Component {
       && parseInt(attr3, 10) >= 0
       && sum <= maximum
     ) {
-      this.setState({ isSave: false });
+      this.setState({ save: false });
     } else {
-      this.setState({ isSave: true });
+      this.setState({ save: true });
     }
   }
 
@@ -75,7 +72,6 @@ class App extends React.Component {
       rare,
       trunfo,
       save,
-      isSave,
     } = this.state;
 
     return (
@@ -89,8 +85,8 @@ class App extends React.Component {
           cardImage={ image }
           cardRare={ rare }
           cardTrunfo={ trunfo }
-          hasTrunfo={ save }
-          isSaveButtonDisabled={ isSave }
+          // hasTrunfo={ }
+          isSaveButtonDisabled={ save }
           onInputChange={ this.handleChange }
         />
         <Card
@@ -102,7 +98,7 @@ class App extends React.Component {
           cardImage={ image }
           cardRare={ rare }
           cardTrunfo={ trunfo }
-          hasTrunfo={ save }
+          // hasTrunfo={ }
         />
       </div>
     );
