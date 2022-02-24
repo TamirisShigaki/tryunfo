@@ -12,6 +12,7 @@ const INITIAL_STATE = {
   rare: 'normal',
   trunfo: false,
   save: true,
+  listCard: [],
 };
 
 class App extends React.Component {
@@ -61,6 +62,44 @@ class App extends React.Component {
     }
   }
 
+  saveBtn = (event) => {
+    event.preventDefault();
+    const {
+      name,
+      description,
+      attr1,
+      attr2,
+      attr3,
+      image,
+      rare,
+      trunfo,
+      save,
+    } = this.state;
+
+    const newCard = {
+      name,
+      description,
+      attr1,
+      attr2,
+      attr3,
+      image,
+      rare,
+      trunfo,
+      save,
+    };
+
+    this.setState((prevState) => ({
+      listCard: [...prevState.listCard, newCard],
+      name: '',
+      description: '',
+      attr1: 0,
+      attr2: 0,
+      attr3: 0,
+      image: '',
+      rare: 'normal',
+    }));
+  }
+
   render() {
     const {
       name,
@@ -88,6 +127,7 @@ class App extends React.Component {
           // hasTrunfo={ }
           isSaveButtonDisabled={ save }
           onInputChange={ this.handleChange }
+          onSaveButtonClick={ this.saveBtn }
         />
         <Card
           cardName={ name }
