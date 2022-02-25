@@ -10,9 +10,10 @@ const INITIAL_STATE = {
   attr3: 0,
   image: '',
   rare: 'normal',
-  trunfo: false,
+  isTrunfo: false,
   save: true,
   listCard: [],
+  hasTrunfo: false,
 };
 
 class App extends React.Component {
@@ -72,7 +73,7 @@ class App extends React.Component {
       attr3,
       image,
       rare,
-      trunfo,
+      isTrunfo,
       save,
     } = this.state;
 
@@ -84,12 +85,13 @@ class App extends React.Component {
       attr3,
       image,
       rare,
-      trunfo,
+      isTrunfo,
       save,
     };
 
     this.setState((prevState) => ({
       listCard: [...prevState.listCard, newCard],
+      hasTrunfo: [...prevState.listCard, newCard].some((card) => card.isTrunfo),
       name: '',
       description: '',
       attr1: 0,
@@ -97,6 +99,7 @@ class App extends React.Component {
       attr3: 0,
       image: '',
       rare: 'normal',
+      isTrunfo: false,
     }));
   }
 
@@ -109,8 +112,9 @@ class App extends React.Component {
       attr3,
       image,
       rare,
-      trunfo,
+      isTrunfo,
       save,
+      hasTrunfo,
     } = this.state;
 
     return (
@@ -123,8 +127,8 @@ class App extends React.Component {
           cardAttr3={ attr3 }
           cardImage={ image }
           cardRare={ rare }
-          cardTrunfo={ trunfo }
-          // hasTrunfo={ }
+          cardTrunfo={ isTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ save }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ this.saveBtn }
@@ -137,8 +141,7 @@ class App extends React.Component {
           cardAttr3={ attr3 }
           cardImage={ image }
           cardRare={ rare }
-          cardTrunfo={ trunfo }
-          // hasTrunfo={ }
+          cardTrunfo={ isTrunfo }
         />
       </div>
     );
