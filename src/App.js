@@ -104,6 +104,12 @@ class App extends React.Component {
     }));
   }
 
+  deleteCard = (name) => {
+    const { listCard } = this.state;
+
+    this.setState(({ listCard: listCard.filter((card) => card.name !== name) }));
+  }
+
   render() {
     const {
       name,
@@ -147,6 +153,7 @@ class App extends React.Component {
         />
         <CardList
           cardList={ listCard }
+          deleteCard={ this.deleteCard }
         />
       </div>
     );

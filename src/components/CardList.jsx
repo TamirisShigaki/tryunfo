@@ -4,7 +4,7 @@ import Card from './Card';
 
 class CardList extends React.Component {
   render() {
-    const { cardList } = this.props;
+    const { cardList, deleteCard } = this.props;
     return (
       <div>
         {
@@ -17,17 +17,29 @@ class CardList extends React.Component {
             image,
             rare,
             isTrunfo,
-          }) => (<Card
-            key={ name }
-            cardName={ name }
-            cardDescription={ description }
-            cardAttr1={ attr1 }
-            cardAttr2={ attr2 }
-            cardAttr3={ attr3 }
-            cardImage={ image }
-            cardRare={ rare }
-            cardTrunfo={ isTrunfo }
-          />))
+          }) => (
+            <div key={ name }>
+              <Card
+                cardName={ name }
+                cardDescription={ description }
+                cardAttr1={ attr1 }
+                cardAttr2={ attr2 }
+                cardAttr3={ attr3 }
+                cardImage={ image }
+                cardRare={ rare }
+                cardTrunfo={ isTrunfo }
+              />
+
+              <button
+                type="button"
+                name="delet"
+                data-testid="delete-button"
+                onClick={ () => deleteCard(name) }
+              >
+                Excluir
+              </button>
+            </div>
+          ))
         }
       </div>
     );
