@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import CardList from './components/CardList';
 
 const INITIAL_STATE = {
   name: '',
@@ -115,6 +116,7 @@ class App extends React.Component {
       isTrunfo,
       save,
       hasTrunfo,
+      listCard,
     } = this.state;
 
     return (
@@ -142,6 +144,9 @@ class App extends React.Component {
           cardImage={ image }
           cardRare={ rare }
           cardTrunfo={ isTrunfo }
+        />
+        <CardList
+          cardList={ listCard }
         />
       </div>
     );
