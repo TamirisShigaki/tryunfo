@@ -5,6 +5,8 @@ import Card from './Card';
 const INITIAL_STATE = {
   filterName: '',
   filterRare: 'todas',
+  filterTrunfo: false,
+  save: false,
 };
 
 class CardList extends React.Component {
@@ -15,22 +17,37 @@ class CardList extends React.Component {
   }
 
   handleFilter = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.type === 'checkbox'
+      ? event.target.checked : event.target.value }, this.validateTrunfo);
+  }
+
+  validateTrunfo = () => {
+    const { filterTrunfo } = this.state;
+
+    return filterTrunfo ? this.setState({ save: true }) : this.setState({ save: false });
   }
 
   render() {
     const { cardList, deleteCard } = this.props;
-    const { filterName, filterRare } = this.state;
+    const { filterName, filterRare, filterTrunfo, save } = this.state;
     return (
       <>
         <div>
-          <input
-            type="text"
-            data-testid="name-filter"
-            onChange={ this.handleFilter }
-            name="filterName"
-          />
+          <p>Filtro de Busca</p>
+          <label htmlFor="name-filter">
+            <input
+              disabled={ save }
+              type="text"
+              data-testid="name-filter"
+              id="name-filter"
+              onChange={ this.handleFilter }
+              name="filterName"
+              placeholder="Nome da Carta"
+            />
+          </label>
+
           <select
+            disabled={ save }
             type="text"
             data-testid="rare-filter"
             onChange={ this.handleFilter }
@@ -41,12 +58,26 @@ class CardList extends React.Component {
             <option>raro</option>
             <option>muito raro</option>
           </select>
+
+          <label htmlFor="trunfo-filter">
+            Super Trybe Trunfo
+            <input
+              type="checkbox"
+              data-testid="trunfo-filter"
+              id="trunfo-filter"
+              onChange={ this.handleFilter }
+              name="filterTrunfo"
+            />
+          </label>
         </div>
         <div>
           {
-            cardList.filter((rareCard) => (filterRare === 'todas'
-              ? rareCard
-              : rareCard.rare === filterRare))
+            cardList.filter((trunfoCard) => (filterTrunfo === true
+              ? trunfoCard.isTrunfo === filterTrunfo
+              : trunfoCard))
+              .filter((rareCard) => (filterRare === 'todas'
+                ? rareCard
+                : rareCard.rare === filterRare))
               .filter((nameCard) => nameCard.name.toLowerCase()
                 .includes(filterName.toLowerCase()))
               .map(({
