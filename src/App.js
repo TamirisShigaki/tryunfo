@@ -107,6 +107,12 @@ class App extends React.Component {
   deleteCard = (name) => {
     const { listCard } = this.state;
 
+    listCard.forEach((card) => {
+      if (card.name === name && card.isTrunfo === true) {
+        this.setState({ hasTrunfo: false });
+      }
+    });
+
     this.setState(({ listCard: listCard.filter((card) => card.name !== name) }));
   }
 
