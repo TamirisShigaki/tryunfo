@@ -4,6 +4,7 @@ import Card from './Card';
 
 const INITIAL_STATE = {
   filterName: '',
+  filterRare: 'todas',
 };
 
 class CardList extends React.Component {
@@ -14,12 +15,12 @@ class CardList extends React.Component {
   }
 
   handleFilter = (event) => {
-    this.setState({ filterName: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
     const { cardList, deleteCard } = this.props;
-    const { filterName } = this.state;
+    const { filterName, filterRare } = this.state;
     return (
       <>
         <div>
@@ -27,12 +28,27 @@ class CardList extends React.Component {
             type="text"
             data-testid="name-filter"
             onChange={ this.handleFilter }
+            name="filterName"
           />
+          <select
+            type="text"
+            data-testid="rare-filter"
+            onChange={ this.handleFilter }
+            name="filterRare"
+          >
+            <option>todas</option>
+            <option>normal</option>
+            <option>raro</option>
+            <option>muito raro</option>
+          </select>
         </div>
         <div>
           {
-            cardList.filter((nameCard) => nameCard.name.toLowerCase()
-              .includes(filterName.toLowerCase()))
+            cardList.filter((rareCard) => (filterRare === 'todas'
+              ? rareCard
+              : rareCard.rare === filterRare))
+              .filter((nameCard) => nameCard.name.toLowerCase()
+                .includes(filterName.toLowerCase()))
               .map(({
                 name,
                 description,
