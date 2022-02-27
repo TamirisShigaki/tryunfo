@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
 
+// Requisitos bonus 10, 11 e 12 com ajuda do Kleverson Eller - Turma 19 - Tribo C
+
 const INITIAL_STATE = {
   filterName: '',
   filterRare: 'todas',
@@ -122,9 +124,9 @@ class CardList extends React.Component {
 CardList.propTypes = {
   cardName: PropTypes.string,
   cardDescription: PropTypes.string,
-  cardAttr1: PropTypes.string,
-  cardAttr2: PropTypes.string,
-  cardAttr3: PropTypes.string,
+  cardAttr1: PropTypes.number,
+  cardAttr2: PropTypes.number,
+  cardAttr3: PropTypes.number,
   cardImage: PropTypes.string,
   cardRare: PropTypes.string,
   cardTrunfo: PropTypes.bool,
