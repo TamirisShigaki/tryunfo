@@ -19,6 +19,7 @@ Onde o usuário pudesse criar um baralho, adicionar e remover cartas, vizualizar
 
 * React
 * JavaScript ES6+
+* CSS
 
 ## Instalando Dependências
 
