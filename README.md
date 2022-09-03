@@ -4,12 +4,12 @@
 
 Projeto pessoal desenvolvido na Trybe, onde tive que desenvolver aplicação em React com manipulação de estados em classes, baseada no jogo no estilo Super Trunfo.
 
-Onde o usuário pudesse criar um baralho, adicionar e remover cartas, vizualizar as cartas adicionadas.
+Onde o usuário pudesse criar um baralho, adicionar e remover cartas, visualizar as cartas adicionadas.
 
 ## Habilidades Desenvolvidas
 
 * Ler o estado de um componente e usá-lo para alterar o que exibimos no browser
-* Inicializar um componente, dando a ele um estado pré-definido
+* Inicializar um componente, dando-lhe um estado pré-definido
 * Atualizar o estado de um componente
 * Capturar eventos utilizando a sintaxe do React
 * Criar formulários utilizando sintaxe JSX com as tags: input, textarea, select, form, checkbox
